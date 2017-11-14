@@ -44,7 +44,7 @@ app.use('/save', routes);
 app.use('/delete', routes);
 
 //set up port
-var port = process.env.PORT || 3000;
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://heroku_6bcvrt0m:7ttugr15dk2s9439ulau4mpmhc@ds157325.mlab.com:57325/heroku_6bcvrt0m";
 
 //listen on port
 app.listen(port, function() {
