@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 //mongo db directory
-var db = 'mongodb://localhost/mongoHeadlines';
+var db = 'mongodb://heroku_6bcvrt0m:7ttugr15dk2s9439ulau4mpmhc@ds157325.mlab.com:57325/heroku_6bcvrt0m';
 
 //connect to mongoose
 mongoose.connect(db, function(err) {
