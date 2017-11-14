@@ -38,7 +38,7 @@ exports.fetch = function() {
 					//create a new entry object using our Headline model
 					var headlineEntry = new Headline({
 						headling: obj[current][0],
-						summary obj[current][1],
+						summary: obj[current][1],
 						date: formattedDate
 					});
 					//save new entry to db

@@ -33,9 +33,9 @@ mongoose.connect(db, function(err) {
 	}
 });
 
-var routes = requier('./config/routes.js');
+var routes = require('./config/routes.js');
 
-app.use('/', routes):
+app.use('/', routes);
 app.use('/test', routes);
 app.use('/fetch', routes);
 app.use('/gather', routes);

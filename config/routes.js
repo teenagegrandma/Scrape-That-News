@@ -8,7 +8,7 @@ var router = express.Router();
 var scrape = require('../scripts/scrape.js');
 
 //bring headlines and notes from the controller
-var headlinesController = require('../controllers/headlines.js');
+var headlinesController = require('../controllers/headline.js');
 var notesController = require('../controllers/notes.js');
 
 //basic route use cb return json data from mongodb
@@ -60,7 +60,7 @@ router.post('/save', function(req, res) {
 		//send the note to the browser as a json
 		res.json(data);
 	});
-};
+});
 
 //delete the notes of an article from mongodb
 router.delete('/delete', function(req, res) {

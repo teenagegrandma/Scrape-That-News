@@ -171,8 +171,8 @@ var typeIt = function() {
 		side = 5;
 	}
 
-	$('.' + sideAry[side]).append('<div id='typewriter-headline'></div>');
-	$('.' + sideAry[side]).append('<div id='typewriter-summary'></div>');
+	$('.' + sideAry[side]).append('<div id=', typewriter-headline, '></div>');
+	$('.' + sideAry[side]).append('<div id=', typewriter-summary, '></div>');
 
 	//cycle to different story
 	console.log(mongoData);
