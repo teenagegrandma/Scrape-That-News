@@ -24,6 +24,7 @@
     "express-handlebars": "^3.0.0",
     "mongojs": "^2.4.1",
     "mongoose": "^4.13.2",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "request": "^2.83.0"
   }
 }

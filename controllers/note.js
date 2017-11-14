@@ -6,7 +6,7 @@ var Note = require('../models/Note');
 
 //save a note
 //export this function as 'save' (data = note info, cb = calback)
-exports.save = funciton(data, cb); {
+exports.save = function(data, cb) {
 
 	//create a formatted date
 	var formattedDate = makeDate();
