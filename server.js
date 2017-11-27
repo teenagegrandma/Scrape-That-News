@@ -12,6 +12,8 @@ const express = require('express'),
 const PORT = process.env.PORT || 3000;
 let app = express();
 
+debugger;
+
 app 
 	.use(bodyParser.json())
 	.use(bodyParser.urlencoded({ extended:true }))
@@ -26,14 +28,16 @@ app
 
 //configure mongoose and start the server
 //set mongoose to leverage promises
-mongoose.Promise = Promise;
+// mongoose.Promise = Promise;
 
-const dbURI = process.env.MONGODB_URI || "mongodb://<dbuser>:<dbpassword>@ds157325.mlab.com:57325/heroku_6bcvrt0m";
+// const dbURI = process.env.MONGODB_URI || "mongodb://<dbuser>:<dbpassword>@ds157325.mlab.com:57325/heroku_6bcvrt0m";
 
-//Database configuration with mongoose
-mongoose.connect(dbURI);
+// //Database configuration with mongoose
+// mongoose.connect(dbURI);
 
-const db = mongoose.connection;
+// const db = mongoose.connection;
+
+const dbURI = process.env.MONGODB_URI || 'mongodb://localhost/Scrape-That-News', { useMongoClient: true}
 
 //Show any mongoose errors
 db.on("erro", function(error) {
