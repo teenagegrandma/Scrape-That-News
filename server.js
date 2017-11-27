@@ -1,65 +1,52 @@
-'use strict';
+'use strict':
 
 //dependencies
 const express = require('express'),
-	mongoose = require('mongoose'),
-	exphbs = require('express-handlebars'),
-	bodyParser = require('body-parser'),
-	logger = require('morgan'),
-	methodOverride = require('method-override');
+	  exphbs = require('express-handlebars'),
+	  bodyParser = require('body-parser'),
+	  logger = require('morgan'),
+	  mongoose = require('mongoose'),
+	  methodOverride = require('method-override');
 
+//set up express app
 const PORT = process.env.PORT || 3000;
+let app = express();
 
-var app = express();
+app 
+	.use(bodyParser.json())
+	.use(bodyParser.urlencoded({ extended:true }))
+	.use(bodyParser.text())
+	.use(bodyParser.json({ type: 'application/vnd.api+json' }))
+	.use(methodOverride('_method'))
+	.use(logger('dev'))
+	.use(express.static(__dirname + '/public'))
+	.engine('handlebars', exphbs({ defaultLayout: 'main' }))
+	.set('view engine', 'handlebars')
+	.use(require('./controllers'));
 
-//use express
-app.use(express.static(__dirname + '/public'));
-
-//connect handlebars
-app.engine('handlebars', exphbs({
-	defaultLayout: 'main'
-}));
-app.set('view engine', 'handlebars');
-
-//use bodyparser
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-	extended: true
-}));
-app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
-
-//use methodOverride
-app.use(methodOverride('_method'));
-
-//use logger
-app.use(logger('dev'));
-
-//controllers
-app.use(require('./controllers'));
-
-//configure server
+//configure mongoose and start the server
+//set mongoose to leverage promises
 mongoose.Promise = Promise;
 
-const dbURI = process.env.MONGODB_URI || "mongodb://heroku_6bcvrt0m:7ttugr15dk2s9439ulau4mpmhc@ds157325.mlab.com:57325/heroku_6bcvrt0m";
+const dbURI = process.env.MONGODB_URI || "mongodb://localhost:27017/news";
 
-//database config with mongoose
+//Database configuration with mongoose
 mongoose.connect(dbURI);
 
 const db = mongoose.connection;
 
-//show errors with mongoose
-db.on("error", function(error) {
+//Show any mongoose errors
+db.on("erro", function(error) {
 	console.log("Mongoose Error: ", error);
 });
 
-//log message if successfully in db through mongoose
+//once logged in to the db through mongoose, log a success message
 db.once("open", function() {
-	console.log("Successful");
-	//start server, listen on port 3000
+	console.log("Mongoose connection successful.");
+	//start the server, listen on port 3000
 	app.listen(PORT, function() {
 		console.log("App running on port" + PORT);
 	});
 });
 
-//export
 module.exports = app;
