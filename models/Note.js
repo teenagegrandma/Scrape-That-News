@@ -1,29 +1,31 @@
-//Headline model
+'use strict';
 
-//require mongoose
-var mongoose = require('mongoose');
+//dependencies
+const mongoose = require('mongoose'),
+      uniqueValidator = require('mongoose-unique-validator');
 
-//create a schema class using mongoose's schema method
-var Schema = mongoose.Schema;
+//create Schema class
+const Schema = mongoose.Schema;
 
-//create the headlineSchema with our schema class
-var headlineSchema = new Schema({
-	//headline, a string 
-	headline: {
-		type: String,
-		required: true
-	},
-	//summary
-	summary: {
-		type: String,
-		required: true
-	},
-	//date
-	date: String,
+//create note schema
+const NoteSchema = new Schema({
+    //title is a required string
+    text: {
+        type: String,
+        required: true
+    },
+    //date is set when added to database
+    date: {
+        type: Date,
+        default: Date.now
+    }
 });
 
-//create the Headline model using the headlineSchema
-var Headline = mongoose.model('Headline', headlineSchema);
+//add unique-validator plugin
+NoteSchema.plugin(uniqueValidator);
 
-//export the Headline model
-module.exports = Headline;
+//create the Note model with the NoteSchema
+const Note = mongoose.model('Note', NoteSchema);
+
+//export the model
+module.exports = Note;
