@@ -5,6 +5,9 @@ const mongoose = require('mongoose'),
       uniqueValidator = require('mongoose-unique-validator');
 
 //create Schema class
+const Schema = mongoose.Schema;
+
+//create article schema
 const ArticleSchema = new Schema({
     //title is a required string
     title: {
