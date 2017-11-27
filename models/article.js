@@ -5,7 +5,7 @@ const mongoose = require('mongoose'),
       uniqueValidator = require('mongoose-unique-validator');
 
 //create Schema class
-const ArticleSchema = new ArticleSchema({
+const ArticleSchema = new Schema({
     //title is a required string
     title: {
         type: String,
